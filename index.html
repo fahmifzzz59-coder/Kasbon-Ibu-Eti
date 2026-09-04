@@ -16,20 +16,13 @@
             animation: bgAnimation 12s ease infinite;
             color: #37352f;          
         }
-
         @keyframes bgAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        .btn-press {
-            transition: transform 0.1s ease, background-color 0.15s ease;
-        }
-        .btn-press:active {
-            transform: scale(0.97);
-        }
-
+        .btn-press { transition: transform 0.1s ease, background-color 0.15s ease; }
+        .btn-press:active { transform: scale(0.97); }
         .notion-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
@@ -43,23 +36,11 @@
             border-color: #cbd5e1;
             transform: translateY(-1px);
         }
-
-        /* Animasi Loading & Logo */
-        @keyframes spinSlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes spinReverse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
+        @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spinReverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
         .animate-spin-slow { animation: spinSlow 3s linear infinite; }
         .animate-spin-reverse { animation: spinReverse 2s linear infinite; }
-
-        @keyframes bounceDot {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1.0); }
-        }
+        @keyframes bounceDot { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
         .dot-1 { animation: bounceDot 1.4s infinite ease-in-out both; animation-delay: -0.32s; }
         .dot-2 { animation: bounceDot 1.4s infinite ease-in-out both; animation-delay: -0.16s; }
         .dot-3 { animation: bounceDot 1.4s infinite ease-in-out both; }
@@ -67,7 +48,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between text-center selection:bg-slate-200">
 
-    <!-- LAYAR LOADING USER (SPLASH SCREEN) -->
+    <!-- LAYAR LOADING USER -->
     <div id="splashScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#fbfbfa]/95 backdrop-blur-md transition-opacity duration-500">
         <div class="flex flex-col items-center justify-center space-y-6 text-center">
             <div class="relative w-24 h-24 flex items-center justify-center">
@@ -77,13 +58,11 @@
                     🛒
                 </div>
             </div>
-
             <div class="space-y-2">
                 <h1 class="text-xs font-extrabold tracking-widest text-[#37352f] uppercase">
                     ANTOSAN SAKEDAP😄
                 </h1>
                 <p class="text-[10px] text-slate-400 font-medium">Menyiapkan Portal Kasbon Warung Ibu Eti...</p>
-
                 <div class="flex items-center justify-center space-x-1.5 pt-2">
                     <div class="w-2 h-2 bg-amber-500 rounded-full dot-1"></div>
                     <div class="w-2 h-2 bg-rose-500 rounded-full dot-2"></div>
@@ -106,8 +85,7 @@
 
     <!-- KONTEN UTAMA USER -->
     <main class="max-w-md w-full mx-auto p-4 flex-grow space-y-4 text-center">
-
-        <!-- TAMPILAN 1: FORM LOGIN -->
+        <!-- FORM LOGIN -->
         <div id="sectionLogin" class="space-y-4 pt-6">
             <div class="bg-[#f1f3f5] border border-[#d8dee4] p-3.5 rounded-xl text-left flex items-start space-x-2.5">
                 <span class="text-base flex-shrink-0">💡</span>
@@ -138,7 +116,7 @@
             </div>
         </div>
 
-        <!-- TAMPILAN 2: DASHBOARD SETELAH BERHASIL LOGIN -->
+        <!-- DASHBOARD USER -->
         <div id="sectionDashboard" class="space-y-4 hidden">
             <div class="notion-card p-4 flex flex-col space-y-3 bg-white/90">
                 <div class="flex items-center justify-between w-full">
@@ -150,7 +128,6 @@
                         Keluar 🚪
                     </button>
                 </div>
-                
                 <div id="tombolWaContainer" class="w-full"></div>
             </div>
 
@@ -158,27 +135,21 @@
                 <div class="w-full flex justify-between items-center px-1">
                     <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider w-full text-center">Daftar Status Kasbon Warung</h3>
                 </div>
-
                 <div class="space-y-2.5 w-full" id="listHasilUser"></div>
             </div>
         </div>
-
     </main>
 
-    <!-- FOOTER -->
     <footer class="text-center py-4 text-[10px] text-slate-400 border-t border-[#e9e9e8] bg-[#fbfbfa]/80 mt-6">
         Warung Ibu Eti Customer Portal • 2026
     </footer>
 
-    <!-- LOGIKA SCRIPT -->
     <script>
         window.onload = function() {
             setTimeout(() => {
                 let splash = document.getElementById('splashScreen');
                 splash.style.opacity = '0';
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 500);
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
             }, 1200);
 
             let sessionUser = sessionStorage.getItem('userAktifIbuEti');
@@ -201,11 +172,11 @@
             let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
 
             let userDitemukan = databaseKasbon.find(item => 
-                item.nama.toLowerCase() === inputNama.toLowerCase() && item.kode === inputKode
+                item.nama.trim().toLowerCase() === inputNama.toLowerCase() && String(item.kode).trim() === inputKode
             );
 
             if (!userDitemukan) {
-                pesanError.innerText = "Nama atau PIN salah! Cek kembali dari Warung Ibu Eti.";
+                pesanError.innerText = "Nama atau PIN salah! Pastikan sudah diinput dari panel admin.";
                 pesanError.classList.remove('hidden');
                 return;
             }
@@ -219,7 +190,7 @@
             document.getElementById('sectionDashboard').classList.remove('hidden');
             document.getElementById('teksNamaUser').innerText = namaUser;
             
-            let nomorWaAdmin = "6281234567890"; // Ganti dengan nomor WhatsApp Ibu Eti jika diperlukan
+            let nomorWaAdmin = "6281234567890";
             let pesanWa = encodeURIComponent(`Halo Ibu Eti, saya ${namaUser} ingin konfirmasi terkait akun kasbon saya.`);
             
             document.getElementById('tombolWaContainer').innerHTML = `
@@ -258,7 +229,7 @@
             }
 
             databaseKasbon.forEach(item => {
-                let isOwner = item.nama.toLowerCase() === namaAktif.toLowerCase();
+                let isOwner = item.nama.trim().toLowerCase() === namaAktif.trim().toLowerCase();
 
                 let statusBadge = item.status === 'Belum'
                     ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">🟡 Aktif</span>`
