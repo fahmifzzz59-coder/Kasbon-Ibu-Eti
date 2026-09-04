@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Kasbon - Warung Ibu Eti</title>
+    <title>Admin Akuntansi Single-Entry - Warung Ibu Eti</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,20 +16,13 @@
             animation: bgAnimation 12s ease infinite;
             color: #37352f;          
         }
-
         @keyframes bgAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        .btn-press {
-            transition: transform 0.1s ease, background-color 0.15s ease;
-        }
-        .btn-press:active {
-            transform: scale(0.97);
-        }
-
+        .btn-press { transition: transform 0.1s ease, background-color 0.15s ease; }
+        .btn-press:active { transform: scale(0.97); }
         .notion-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
@@ -43,23 +36,11 @@
             border-color: #cbd5e1;
             transform: translateY(-1px);
         }
-
-        /* Animasi Loading & Logo Berputar */
-        @keyframes spinSlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes spinReverse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
+        @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spinReverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
         .animate-spin-slow { animation: spinSlow 3s linear infinite; }
         .animate-spin-reverse { animation: spinReverse 2s linear infinite; }
-
-        @keyframes bounceDot {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1.0); }
-        }
+        @keyframes bounceDot { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
         .dot-1 { animation: bounceDot 1.4s infinite ease-in-out both; animation-delay: -0.32s; }
         .dot-2 { animation: bounceDot 1.4s infinite ease-in-out both; animation-delay: -0.16s; }
         .dot-3 { animation: bounceDot 1.4s infinite ease-in-out both; }
@@ -67,26 +48,21 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-slate-200">
 
-    <!-- LAYAR LOADING ADMIN (SPLASH SCREEN) -->
+    <!-- LAYAR LOADING ADMIN -->
     <div id="splashScreenAdmin" class="fixed inset-0 z-50 flex items-center justify-center bg-[#fbfbfa]/95 backdrop-blur-md transition-opacity duration-500">
         <div class="flex flex-col items-center justify-center space-y-6 text-center">
-            <!-- Logo Berputar -->
             <div class="relative w-24 h-24 flex items-center justify-center">
                 <div class="absolute inset-0 border-3 border-transparent border-t-amber-500 border-b-rose-500 rounded-full animate-spin-slow"></div>
                 <div class="absolute inset-2 border-3 border-transparent border-l-purple-500 border-r-indigo-500 rounded-full animate-spin-reverse"></div>
                 <div class="bg-white/90 backdrop-blur-md w-14 h-14 rounded-full shadow-sm border border-slate-200 flex items-center justify-center text-xl font-extrabold text-[#37352f]">
-                    👩‍🍳
+                    📊
                 </div>
             </div>
-
             <div class="space-y-2">
-                <!-- Teks Sesuai Permintaan -->
                 <h1 class="text-xs font-extrabold tracking-widest text-[#37352f] uppercase">
                     SAKEDAP IBU BOS😎
                 </h1>
-                <p class="text-[10px] text-slate-400 font-medium">Menyiapkan Panel Admin Warung Ibu Eti...</p>
-
-                <!-- Titik-Titik Loading Berputar / Bergerak -->
+                <p class="text-[10px] text-slate-400 font-medium">Memuat Buku Akuntansi Single-Entry...</p>
                 <div class="flex items-center justify-center space-x-1.5 pt-2">
                     <div class="w-2 h-2 bg-amber-500 rounded-full dot-1"></div>
                     <div class="w-2 h-2 bg-rose-500 rounded-full dot-2"></div>
@@ -100,16 +76,15 @@
     <header class="bg-[#fbfbfa]/80 border-b border-[#e9e9e8] py-3 px-4 sticky top-0 z-40 backdrop-blur-md">
         <div class="max-w-md mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <span class="text-base bg-slate-100 p-1.5 rounded-lg border border-slate-200">🛠️</span>
+                <span class="text-base bg-slate-100 p-1.5 rounded-lg border border-slate-200">📒</span>
                 <div>
-                    <h1 class="text-xs font-bold text-[#37352f] tracking-tight">Admin Kasbon Ibu Eti</h1>
-                    <span class="text-[10px] text-slate-400 font-medium">Warung Ibu Eti Management</span>
+                    <h1 class="text-xs font-bold text-[#37352f] tracking-tight">Akuntansi Kasbon Ibu Eti</h1>
+                    <span class="text-[10px] text-slate-400 font-medium">Single-Entry Cash Book</span>
                 </div>
             </div>
-            <!-- Tombol Lihat Halaman User Langsung Terbuka Tanpa Login -->
             <a href="user.html" target="_blank" class="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] font-bold btn-press transition flex items-center space-x-1">
                 <span>👀</span>
-                <span>Lihat Halaman User</span>
+                <span>Lihat User</span>
             </a>
         </div>
     </header>
@@ -117,23 +92,36 @@
     <!-- KONTEN UTAMA ADMIN -->
     <main class="max-w-md w-full mx-auto p-4 flex-grow space-y-4">
 
-        <!-- KOTAK RINGKASAN TOTAL PIUTANG -->
-        <div class="notion-card p-4 bg-gradient-to-br from-white to-amber-50/50 border-amber-200/60 flex items-center justify-between">
-            <div class="text-left space-y-0.5">
-                <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider">Total Piutang Aktif</span>
-                <h2 id="totalPiutangAngka" class="text-lg font-extrabold text-rose-600">Rp 0</h2>
-                <p class="text-[9px] text-slate-400">Total uang dari kasbon yang belum lunas</p>
+        <!-- RINGKASAN KEUANGAN AKuntansi (DASHBOARD KAS) -->
+        <div class="grid grid-cols-2 gap-2.5">
+            <div class="notion-card p-3 bg-gradient-to-br from-white to-emerald-50/50 border-emerald-200/60 text-left space-y-0.5">
+                <span class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider">Total Kas Masuk</span>
+                <h2 id="totalKasMasuk" class="text-sm font-extrabold text-emerald-600">Rp 0</h2>
+                <p class="text-[8px] text-slate-400">Penerimaan & Pelunasan</p>
             </div>
-            <div class="text-2xl bg-amber-100 p-2.5 rounded-xl border border-amber-200 shadow-xs">
-                📊
+            <div class="notion-card p-3 bg-gradient-to-br from-white to-rose-50/50 border-rose-200/60 text-left space-y-0.5">
+                <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider">Total Kas Keluar</span>
+                <h2 id="totalKasKeluar" class="text-sm font-extrabold text-rose-600">Rp 0</h2>
+                <p class="text-[8px] text-slate-400">Belanja & Pengeluaran</p>
             </div>
         </div>
 
-        <!-- FORM TAMBAH / EDIT KASBON -->
+        <div class="notion-card p-4 bg-gradient-to-br from-white to-amber-50/50 border-amber-200/60 flex items-center justify-between">
+            <div class="text-left space-y-0.5">
+                <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider">Saldo Kas di Laci (Net)</span>
+                <h2 id="saldoKasBersih" class="text-lg font-extrabold text-[#37352f]">Rp 0</h2>
+                <p class="text-[9px] text-slate-400">Piutang Aktif: <b id="totalPiutangAktif" class="text-rose-600">Rp 0</b></p>
+            </div>
+            <div class="text-2xl bg-amber-100 p-2.5 rounded-xl border border-amber-200 shadow-xs">
+                💼
+            </div>
+        </div>
+
+        <!-- FORM TAMBAH / EDIT KASBON (PENDAPATAN / PIUTANG) -->
         <div class="notion-card p-4 space-y-3">
             <div class="flex items-center justify-between border-b border-[#e9e9e8] pb-2">
-                <h3 id="formTitle" class="text-xs font-bold text-[#37352f] uppercase tracking-wider">➕ Tambah Kasbon Baru</h3>
-                <button type="button" id="btnBatalEdit" onclick="resetForm()" class="text-[10px] text-rose-600 font-bold hover:underline hidden">Batal Edit</button>
+                <h3 id="formTitle" class="text-xs font-bold text-[#37352f] uppercase tracking-wider">➕ Catat Kasbon / Piutang</h3>
+                <button type="button" id="btnBatalEdit" onclick="resetForm()" class="text-[10px] text-rose-600 font-bold hover:underline hidden">Batal</button>
             </div>
 
             <form id="formKasbon" onsubmit="simpanData(event)" class="space-y-3 text-left">
@@ -146,7 +134,7 @@
 
                 <div class="grid grid-cols-2 gap-2.5">
                     <div>
-                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Nama Barang</label>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Nama Barang / Keterangan</label>
                         <input type="text" id="barang" required placeholder="Cth: Kopi & Roti" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
                     </div>
                     <div>
@@ -163,51 +151,78 @@
                     <div>
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Status Utang</label>
                         <select id="status" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
-                            <option value="Belum">Belum Lunas</option>
-                            <option value="Lunas">Lunas</option>
+                            <option value="Belum">Belum Lunas (Utang)</option>
+                            <option value="Lunas">Lunas (Kas Masuk)</option>
                         </select>
                     </div>
                 </div>
 
                 <button type="submit" id="btnSubmit" class="w-full bg-[#37352f] text-white font-bold py-2.5 rounded-lg text-xs btn-press hover:bg-black transition shadow-sm mt-1">
-                    Simpan Kasbon
+                    Simpan Catatan Kasbon
                 </button>
             </form>
         </div>
 
-        <!-- DAFTAR KASBON PELANGGAN -->
+        <!-- FORM TAMBAH ARUS KAS Keluar (PENGELUARAN / BELANJA) -->
+        <div class="notion-card p-4 space-y-3 bg-amber-50/30">
+            <div class="border-b border-[#e9e9e8] pb-2">
+                <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider">📤 Catat Pengeluaran / Kulakan Toko</h3>
+            </div>
+            <form id="formPengeluaran" onsubmit="simpanPengeluaran(event)" class="space-y-3 text-left">
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Uraian Pengeluaran</label>
+                        <input type="text" id="ketKeluar" required placeholder="Cth: Beli Gas / Kulakan" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Nominal Keluar (Rp)</label>
+                        <input type="number" id="nominalKeluar" required placeholder="Cth: 50000" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-lg text-xs btn-press transition shadow-xs">
+                    Catat Kas Keluar
+                </button>
+            </form>
+        </div>
+
+        <!-- DAFTAR KASBON / PIUTANG -->
         <div class="space-y-3 pt-1">
             <div class="flex items-center justify-between px-1">
-                <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider">Daftar Kasbon Masuk</h3>
+                <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider">Buku Piutang & Kasbon Pelanggan</h3>
                 <span id="jumlahData" class="text-[10px] text-slate-400 font-medium">0 Data</span>
             </div>
+            <div class="space-y-2.5" id="listAdmin"></div>
+        </div>
 
-            <div class="space-y-2.5" id="listAdmin">
-                <!-- Data dimuat lewat JS -->
+        <!-- DAFTAR RIWAYAT PENGELUARAN -->
+        <div class="space-y-3 pt-2">
+            <div class="flex items-center justify-between px-1">
+                <h3 class="text-xs font-bold text-rose-700 uppercase tracking-wider">Riwayat Pengeluaran Kas</h3>
+                <span id="jumlahDataKeluar" class="text-[10px] text-slate-400 font-medium">0 Data</span>
             </div>
+            <div class="space-y-2.5" id="listPengeluaran"></div>
         </div>
 
     </main>
 
     <!-- FOOTER -->
     <footer class="text-center py-4 text-[10px] text-slate-400 border-t border-[#e9e9e8] bg-[#fbfbfa]/80 mt-6">
-        Warung Ibu Eti Admin Panel • 2026
+        Warung Ibu Eti Single-Entry Accounting • 2026
     </footer>
 
-    <!-- SKRIP LOGIKA ADMIN -->
+    <!-- SKRIP LOGIKA AKUNTANSI SINGLE-ENTRY -->
     <script>
         window.onload = function() {
             setTimeout(() => {
                 let splash = document.getElementById('splashScreenAdmin');
                 splash.style.opacity = '0';
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 500);
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
             }, 1200);
 
             muatDataAdmin();
         }
 
+        // Simpan / Update Kasbon (Piutang atau Kas Masuk jika langsung Lunas)
         function simpanData(event) {
             event.preventDefault();
 
@@ -219,32 +234,20 @@
             let statusInput = document.getElementById('status').value;
 
             let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
-
             let tanggalHariIni = new Date().toLocaleDateString('id-ID', {
                 day: 'numeric', month: 'short', year: 'numeric'
             });
 
             if (index === "") {
-                let indexSama = databaseKasbon.findIndex(item => 
-                    item.nama.toLowerCase() === namaInput.toLowerCase() && item.status === 'Belum'
-                );
-
-                if (indexSama !== -1) {
-                    databaseKasbon[indexSama].nominal += nominalInput;
-                    databaseKasbon[indexSama].barang = `${databaseKasbon[indexSama].barang} + ${barangInput}`;
-                    databaseKasbon[indexSama].tanggal = tanggalHariIni;
-                    databaseKasbon[indexSama].kode = kodeInput;
-                } else {
-                    let newData = {
-                        nama: namaInput,
-                        barang: barangInput,
-                        nominal: nominalInput,
-                        kode: kodeInput,
-                        status: statusInput,
-                        tanggal: tanggalHariIni
-                    };
-                    databaseKasbon.unshift(newData);
-                }
+                let newData = {
+                    nama: namaInput,
+                    barang: barangInput,
+                    nominal: nominalInput,
+                    kode: kodeInput,
+                    status: statusInput,
+                    tanggal: tanggalHariIni
+                };
+                databaseKasbon.unshift(newData);
             } else {
                 databaseKasbon[index] = {
                     ...databaseKasbon[index],
@@ -261,65 +264,112 @@
             muatDataAdmin();
         }
 
+        // Catat Pengeluaran Tunai Baru (Arus Kas Keluar)
+        function simpanPengeluaran(event) {
+            event.preventDefault();
+            let ket = document.getElementById('ketKeluar').value.trim();
+            let nominal = parseFloat(document.getElementById('nominalKeluar').value);
+            let tanggal = new Date().toLocaleDateString('id-ID', {
+                day: 'numeric', month: 'short', year: 'numeric'
+            });
+
+            let databaseKeluar = JSON.parse(localStorage.getItem('databaseKasKeluarIbuEti')) || [];
+            databaseKeluar.unshift({ ket, nominal, tanggal });
+            localStorage.setItem('databaseKasKeluarIbuEti', JSON.stringify(databaseKeluar));
+
+            document.getElementById('formPengeluaran').reset();
+            muatDataAdmin();
+        }
+
+        // Muat Data & Kalkulasi Single-Entry Akuntansi
         function muatDataAdmin() {
             let container = document.getElementById('listAdmin');
+            let containerKeluar = document.getElementById('listPengeluaran');
             container.innerHTML = '';
+            containerKeluar.innerHTML = '';
 
             let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
-            document.getElementById('jumlahData').innerText = `${databaseKasbon.length} Data`;
+            let databaseKeluar = JSON.parse(localStorage.getItem('databaseKasKeluarIbuEti')) || [];
 
-            let totalPiutang = 0;
+            document.getElementById('jumlahData').innerText = `${databaseKasbon.length} Data`;
+            document.getElementById('jumlahDataKeluar').innerText = `${databaseKeluar.length} Data`;
+
+            // 1. Kalkulasi Akuntansi Single Entry
+            let totalPiutangAktif = 0;
+            let totalKasMasuk = 0;
+
             databaseKasbon.forEach(item => {
+                let nominal = Number(item.nominal) || 0;
                 if (item.status === 'Belum') {
-                    totalPiutang += Number(item.nominal) || 0;
+                    totalPiutangAktif += nominal;
+                } else if (item.status === 'Lunas') {
+                    totalKasMasuk += nominal; // Dianggap kas masuk dari pelunasan
                 }
             });
-            document.getElementById('totalPiutangAngka').innerText = `Rp ${totalPiutang.toLocaleString('id-ID')}`;
 
+            let totalKasKeluar = 0;
+            databaseKeluar.forEach(item => {
+                totalKasKeluar += Number(item.nominal) || 0;
+            });
+
+            let saldoKasBersih = totalKasMasuk - totalKasKeluar;
+
+            // Render ke UI Dashboard Atas
+            document.getElementById('totalPiutangAktif').innerText = `Rp ${totalPiutangAktif.toLocaleString('id-ID')}`;
+            document.getElementById('totalKasMasuk').innerText = `Rp ${totalKasMasuk.toLocaleString('id-ID')}`;
+            document.getElementById('totalKasKeluar').innerText = `Rp ${totalKasKeluar.toLocaleString('id-ID')}`;
+            document.getElementById('saldoKasBersih').innerText = `Rp ${saldoKasBersih.toLocaleString('id-ID')}`;
+
+            // Render List Kasbon
             if (databaseKasbon.length === 0) {
-                container.innerHTML = `
-                    <div class="notion-card p-6 text-center space-y-1">
-                        <p class="text-lg">📭</p>
-                        <p class="text-xs text-slate-400 font-medium">Belum ada data kasbon tersimpan.</p>
-                    </div>
-                `;
-                return;
-            }
+                container.innerHTML = `<div class="notion-card p-4 text-center text-xs text-slate-400">Belum ada data piutang.</div>`;
+            } else {
+                databaseKasbon.forEach((item, index) => {
+                    let statusBadge = item.status === 'Belum'
+                        ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">🟡 Belum Lunas</span>`
+                        : `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 Lunas (Kas Masuk)</span>`;
 
-            databaseKasbon.forEach((item, index) => {
-                let statusBadge = item.status === 'Belum'
-                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">🟡 Belum Lunas</span>`
-                    : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 Lunas</span>`;
-
-                let card = document.createElement('div');
-                card.className = "notion-card p-3.5 space-y-2.5 text-left";
-                
-                card.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-slate-400 font-medium">${item.tanggal}</span>
-                        ${statusBadge}
-                    </div>
-                    
-                    <div class="space-y-1">
+                    let card = document.createElement('div');
+                    card.className = "notion-card p-3 space-y-2 text-left text-xs";
+                    card.innerHTML = `
                         <div class="flex justify-between items-center">
-                            <h4 class="font-bold text-xs text-[#37352f]">${item.nama}</h4>
-                            <span class="text-xs font-extrabold text-rose-600">Rp ${Number(item.nominal).toLocaleString('id-ID')}</span>
+                            <span class="text-[10px] text-slate-400">${item.tanggal}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>${item.nama}</span>
+                            <span class="text-rose-600">Rp ${Number(item.nominal).toLocaleString('id-ID')}</span>
                         </div>
                         <p class="text-[11px] text-slate-500">Barang: <b class="text-[#37352f]">${item.barang}</b></p>
-                        <p class="text-[10px] text-slate-400">PIN Pelanggan: <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-600 font-mono">${item.kode}</code></p>
-                    </div>
+                        <div class="flex space-x-2 pt-1 border-t border-[#e9e9e8]">
+                            <button onclick="editData(${index})" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1 rounded text-[10px] font-bold btn-press">✏️ Edit</button>
+                            <button onclick="hapusData(${index})" class="flex-1 bg-rose-50 hover:bg-rose-100 text-rose-700 py-1 rounded text-[10px] font-bold btn-press">🗑️ Hapus</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
 
-                    <div class="flex items-center space-x-2 pt-1 border-t border-[#e9e9e8]">
-                        <button onclick="editData(${index})" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg text-[10px] font-bold btn-press transition">
-                            ✏️ Edit
-                        </button>
-                        <button onclick="hapusData(${index})" class="flex-1 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 py-1.5 rounded-lg text-[10px] font-bold btn-press transition">
-                            🗑️ Hapus
-                        </button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+            // Render List Pengeluaran
+            if (databaseKeluar.length === 0) {
+                containerKeluar.innerHTML = `<div class="notion-card p-4 text-center text-xs text-slate-400">Belum ada pengeluaran kas.</div>`;
+            } else {
+                databaseKeluar.forEach((item, index) => {
+                    let card = document.createElement('div');
+                    card.className = "notion-card p-3 space-y-1 text-left text-xs bg-rose-50/20";
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center text-[10px] text-slate-400">
+                            <span>${item.tanggal}</span>
+                            <button onclick="hapusPengeluaran(${index})" class="text-rose-600 font-bold hover:underline">Hapus</button>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>${item.ket}</span>
+                            <span class="text-rose-600">- Rp ${Number(item.nominal).toLocaleString('id-ID')}</span>
+                        </div>
+                    `;
+                    containerKeluar.appendChild(card);
+                });
+            }
         }
 
         function editData(index) {
@@ -333,26 +383,34 @@
             document.getElementById('kode').value = item.kode;
             document.getElementById('status').value = item.status;
 
-            document.getElementById('formTitle').innerText = "✏️ Edit Kasbon Pelanggan";
+            document.getElementById('formTitle').innerText = "✏️ Edit Catatan Piutang";
             document.getElementById('btnSubmit').innerText = "Update Perubahan";
             document.getElementById('btnBatalEdit').classList.remove('hidden');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function resetForm() {
             document.getElementById('formKasbon').reset();
             document.getElementById('editIndex').value = "";
-            document.getElementById('formTitle').innerText = "➕ Tambah Kasbon Baru";
-            document.getElementById('btnSubmit').innerText = "Simpan Kasbon";
+            document.getElementById('formTitle').innerText = "➕ Catat Kasbon / Piutang";
+            document.getElementById('btnSubmit').innerText = "Simpan Catatan Kasbon";
             document.getElementById('btnBatalEdit').classList.add('hidden');
         }
 
         function hapusData(index) {
-            if (confirm("Yakin ingin menghapus catatan kasbon ini?")) {
+            if (confirm("Hapus catatan piutang ini?")) {
                 let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
                 databaseKasbon.splice(index, 1);
                 localStorage.setItem('databaseKasbonIbuEti', JSON.stringify(databaseKasbon));
+                muatDataAdmin();
+            }
+        }
+
+        function hapusPengeluaran(index) {
+            if (confirm("Hapus catatan pengeluaran ini?")) {
+                let databaseKeluar = JSON.parse(localStorage.getItem('databaseKasKeluarIbuEti')) || [];
+                databaseKeluar.splice(index, 1);
+                localStorage.setItem('databaseKasKeluarIbuEti', JSON.stringify(databaseKeluar));
                 muatDataAdmin();
             }
         }
