@@ -100,11 +100,11 @@
                 <div class="space-y-3 text-left">
                     <div>
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Nama Lengkap</label>
-                        <input type="text" id="loginNama" placeholder="Cth: Fahn" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                        <input type="text" id="loginNama" placeholder="Cth: Test" class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">PIN Pelanggan</label>
-                        <input type="password" id="loginKode" placeholder="Masukkan PIN dari warung..." class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                        <input type="text" id="loginKode" placeholder="Masukkan PIN dari warung..." class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
                     </div>
                 </div>
 
@@ -171,13 +171,16 @@
 
             let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
 
-            let userDitemukan = databaseKasbon.find(item => 
-                item.nama.trim().toLowerCase() === inputNama.toLowerCase() && String(item.kode).trim() === inputKode
-            );
+            // Pengecekan fleksibel: toleransi huruf besar/kecil & spasi
+            let userDitemukan = databaseKasbon.find(item => {
+                let namaDb = String(item.nama).trim().toLowerCase();
+                let kodeDb = String(item.kode).trim();
+                return namaDb === inputNama.toLowerCase() && kodeDb === inputKode;
+            });
 
             if (!userDitemukan) {
                 pesanError.innerText = "Nama atau PIN salah! Pastikan sudah diinput dari panel admin.";
-                pesanError.classList.remove('hidden');
+                pesansErrorClass = pesanError.classList.remove('hidden');
                 return;
             }
 
@@ -231,7 +234,7 @@
             databaseKasbon.forEach(item => {
                 let isOwner = item.nama.trim().toLowerCase() === namaAktif.trim().toLowerCase();
 
-                let statusBadge = item.status === 'Belum'
+                let statusBadge = item.status === 'Belung' || item.status === 'Belum'
                     ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">🟡 Aktif</span>`
                     : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 Lunas ✅</span>`;
 
