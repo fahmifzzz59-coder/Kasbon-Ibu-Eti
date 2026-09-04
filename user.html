@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kasbon - Warung Ibu Eti</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between text-center selection:bg-slate-200">
+
+    <!-- LAYAR LOADING -->
+    <div id="splashScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#fbfbfa]/95 backdrop-blur-md transition-opacity duration-500">
+        <div class="flex flex-col items-center justify-center space-y-6 text-center">
+            <div class="relative w-24 h-24 flex items-center justify-center">
+                <div class="absolute inset-0 border-3 border-transparent border-t-amber-500 border-b-rose-500 rounded-full animate-spin-slow"></div>
+                <div class="absolute inset-2 border-3 border-transparent border-l-purple-500 border-r-indigo-500 rounded-full animate-spin-reverse"></div>
+                <div class="bg-white/90 backdrop-blur-md w-14 h-14 rounded-full shadow-sm border border-slate-200 flex items-center justify-center text-xl font-extrabold text-[#37352f]">
+                    🛒
+                </div>
+            </div>
+            <div class="space-y-2">
+                <h1 class="text-xs font-extrabold tracking-widest text-[#37352f] uppercase">
+                    ANTOSAN SAKEDAP😄
+                </h1>
+                <p class="text-[10px] text-slate-400 font-medium">Menyiapkan Portal Kasbon Warung Ibu Eti...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER USER -->
+    <header class="bg-[#fbfbfa]/80 border-b border-[#e9e9e8] py-3 px-4 sticky top-0 z-40 backdrop-blur-md">
+        <div class="max-w-md mx-auto flex flex-col items-center justify-center space-y-0.5">
+            <div class="flex items-center space-x-1.5">
+                <span class="text-base bg-slate-100 p-1 rounded-md border border-slate-200">🔐</span>
+                <span class="text-base font-bold tracking-tight text-[#37352f]">Portal Kasbon Warung Ibu Eti</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-medium">Halaman Utama Pengguna (User)</span>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-md w-full mx-auto p-4 flex-grow space-y-4 flex flex-col justify-center">
+
+        <!-- 1. BAGIAN LOGIN USER -->
+        <div id="sectionLogin" class="notion-card p-5 space-y-3.5 text-center transition-all duration-300">
+            <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider border-b border-[#e9e9e8] pb-2">Cek Kasbon Anda</h3>
+            
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Nama Pelanggan</label>
+                    <input type="text" id="inputNamaUser" placeholder="Masukkan nama Anda..." class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">PIN / Sandi</label>
+                    <input type="password" id="inputPinUser" placeholder="Masukkan PIN dari Admin..." class="w-full bg-[#fbfbfa] border border-[#e9e9e8] rounded-lg px-3 py-2 text-xs text-[#37352f] focus:outline-none focus:border-slate-400 focus:bg-white transition">
+                </div>
+            </div>
+
+            <div id="pesanErrorUser" class="text-[11px] text-rose-600 font-medium hidden"></div>
+
+            <button onclick="prosesLoginUser()" class="w-full bg-[#37352f] text-white font-bold py-2.5 rounded-lg text-xs btn-press hover:bg-black transition shadow-sm mt-2">
+                Masuk Portal 🚀
+            </button>
+        </div>
+
+        <!-- 2. BAGIAN DASHBOARD (Disembunyikan sebelum login) -->
+        <div id="sectionDashboard" class="hidden space-y-4 pt-2 w-full text-center transition-all duration-300">
+            <div class="notion-card p-4 flex flex-col space-y-3 bg-white/90">
+                <div class="flex items-center justify-between w-full">
+                    <div class="text-left">
+                        <p class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Selamat Datang,</p>
+                        <h3 id="teksNamaUser" class="text-sm font-bold text-[#37352f]">Pelanggan</h3>
+                    </div>
+                    <button onclick="prosesLogout()" class="bg-rose-50 border border-rose-200 text-rose-700 px-3 py-1.5 rounded-lg text-[10px] font-bold btn-press hover:bg-rose-100 transition">
+                        Keluar 🚪
+                    </button>
+                </div>
+                <div id="tombolWaContainer" class="w-full"></div>
+            </div>
+
+            <div class="space-y-3 pt-1">
+                <div class="w-full flex justify-between items-center px-1">
+                    <h3 class="text-xs font-bold text-[#37352f] uppercase tracking-wider w-full text-center">Daftar Status Kasbon Warung</h3>
+                </div>
+                <div class="space-y-2.5 w-full" id="listHasilUser"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4 text-[10px] text-slate-400 border-t border-[#e9e9e8] bg-[#fbfbfa]/80 mt-6">
+        Warung Ibu Eti Customer Portal • 2026
+    </footer>
+
+    <!-- SCRIPT LOGIKA USER -->
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                let splash = document.getElementById('splashScreen');
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
+            }, 1000);
+        }
+
+        function prosesLoginUser() {
+            let nama = document.getElementById('inputNamaUser').value.trim();
+            let pin = document.getElementById('inputPinUser').value.trim();
+            let pesanError = document.getElementById('pesanErrorUser');
+
+            if (nama === "" || pin === "") {
+                pesanError.innerText = "Nama dan PIN wajib diisi!";
+                pesanError.classList.remove('hidden');
+                return;
+            }
+
+            if (nama.toLowerCase() === "user" && pin === "user") {
+                tampilkanDashboard("User Tamu");
+                return;
+            }
+
+            let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
+            let userDitemukan = databaseKasbon.find(item => 
+                item.nama.toLowerCase() === nama.toLowerCase() && item.kode === pin
+            );
+
+            if (userDitemukan) {
+                tampilkanDashboard(userDitemukan.nama);
+            } else {
+                pesanError.innerText = "Data tidak ditemukan atau PIN salah!";
+                pesanError.classList.remove('hidden');
+            }
+        }
+
+        function tampilkanDashboard(namaAktif) {
+            document.getElementById('sectionLogin').classList.add('hidden');
+            document.getElementById('sectionDashboard').classList.remove('hidden');
+            
+            document.getElementById('teksNamaUser').innerText = namaAktif;
+            
+            let nomorWaAdmin = "6281234567890"; 
+            let pesanWa = encodeURIComponent(`Halo Ibu Eti, saya ${namaAktif} ingin konfirmasi terkait akun kasbon saya.`);
+            
+            document.getElementById('tombolWaContainer').innerHTML = `
+                <a href="https://wa.me/${nomorWaAdmin}?text=${pesanWa}" target="_blank" 
+                   class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs btn-press transition shadow-xs flex items-center justify-center space-x-1.5">
+                    <span>💬 Hubungi Warung Ibu Eti via WhatsApp</span>
+                </a>
+            `;
+
+            muatSemuaKasbon(namaAktif);
+        }
+
+        function prosesLogout() {
+            document.getElementById('inputNamaUser').value = "";
+            document.getElementById('inputPinUser').value = "";
+            document.getElementById('pesanErrorUser').classList.add('hidden');
+            
+            document.getElementById('sectionDashboard').classList.add('hidden');
+            document.getElementById('sectionLogin').classList.remove('hidden');
+        }
+
+        function muatSemuaKasbon(namaAktif) {
+            const container = document.getElementById('listHasilUser');
+            container.innerHTML = '';
+
+            let databaseKasbon = JSON.parse(localStorage.getItem('databaseKasbonIbuEti')) || [];
+
+            if (databaseKasbon.length === 0) {
+                container.innerHTML = `
+                    <div class="notion-card p-6 text-center space-y-1 w-full">
+                        <p class="text-lg">📭</p>
+                        <p class="text-xs text-slate-400 font-medium">Belum ada catatan kasbon di warung.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            databaseKasbon.forEach(item => {
+                // Cek apakah ini data milik user yang sedang login atau bukan
+                let isOwner = (namaAktif.toLowerCase() === 'user tamu') || (item.nama.toLowerCase() === namaAktif.toLowerCase());
+
+                let statusBadge = item.status === 'Belum'
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">🟡 Belum Lunas</span>`
+                    : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 Lunas ✅</span>`;
+
+                let card = document.createElement('div');
+                card.className = "notion-card p-3.5 space-y-2.5 flex flex-col items-center text-center w-full";
+                
+                let detailKonten = "";
+                if (isOwner) {
+                    // Kalau punya sendiri, tampilkan detail lengkap
+                    detailKonten = `
+                        <div class="bg-[#fbfbfa] border border-[#e9e9e8] p-2.5 rounded-lg space-y-1 w-full text-left">
+                            <div class="text-[11px] text-slate-500 flex justify-between">
+                                <span>Barang:</span>
+                                <span class="font-medium text-[#37352f]">${item.barang}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-500 flex justify-between">
+                                <span>Total Utang:</span>
+                                <span class="font-bold text-rose-600">Rp ${Number(item.nominal).toLocaleString('id-ID')}</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Kalau punya orang lain, nama muncul tapi barang & nominal disensor
+                    detailKonten = `
+                        <div class="bg-slate-50 border border-slate-200 p-2 rounded-lg w-full text-center">
+                            <span class="text-[10px] text-slate-400 italic">🔒 Barang & Nominal disensor (Privasi Pelanggan)</span>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="flex flex-col items-center w-full space-y-1">
+                        <div class="flex items-center justify-between w-full px-1">
+                            <span class="text-[10px] text-slate-400 font-medium">${item.tanggal}</span>
+                            ${statusBadge}
+                        </div>
+                        <h4 class="font-bold text-sm text-[#37352f]">Pelanggan: ${item.nama}</h4>
+                    </div>
+                    ${detailKonten}
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
